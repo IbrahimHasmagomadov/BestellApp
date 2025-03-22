@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vay Pizza</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
+    <script src="script.js" defer></script>
+    <script src="scripts/db.js" defer></script>
+    <!-- <script src="template.js"></script> -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/assets.css">
+    <link rel="stylesheet" href="style/basket.css">
+    <link rel="stylesheet" href="style/fonts.css">
+    <link rel="stylesheet" href="style/standard.css">
+    <link rel="stylesheet" href="style/navigaton.css"> 
+    <link rel="icon" type="image/x-icon" href="assets/icon/favicon.png">
+
+
+</head>
+<body onload="init()">
+    <header>
+        <!-- <div class="content"> -->
+            <img src="assets/img/Logo.png" alt="Logo">
+            <div class="burger">
+                <div class="menu"></div>
+                <div class="menu"></div>
+                <div class="menu"></div>
+            </div>
+        </div>
+    </header>
+    <div class="content_max_width">
+        <div class="w3-sidebar w3-bar-block w3-card">
+            <h3 class="w3-bar-item">Warenkorb</h3>
+        </div>
+    <main class="content">
+        <section class="section_hero">
+            <div class="hero"></div>
+            <h1>Vay Pizza</h1>
+            <p>Bewertungen (4,9 von 5 Sternen)</p>
+        </section>
+        <nav class="category-nav">
+            <a onclick="scrollToSection('pizza_container')">Pizza</a>
+            <a onclick="scrollToSection('burger_container')">Burger</a>
+            <a onclick="scrollToSection('sides_container')">Beilagen</a>
+            <a onclick="scrollToSection('dips_container')">Dips</a>
+        </nav>
+
+        <section id="pizza_container"></section>
+        <section id="burger_container"></section>
+        <section id="sides_container"></section>
+        <section id="dips_container"></section>
+    </main>
+    </div>
+
+</body>
+</html>
