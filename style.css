@@ -1,12 +1,16 @@
+body {
+    background-color: #fdfdfd;
+    color: #333;
+  }
 
-header{
+header {
     background-color: #FF8000;
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 0 40px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 header img{
@@ -15,10 +19,20 @@ display: flex;
 align-items: center;
 }
 
+.header_content{
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
 .burger{
     display: flex;
     flex-direction: column;
     gap: 5px;
+    cursor: pointer;
+    justify-content: center;
 }
 
 .menu{
@@ -28,8 +42,23 @@ align-items: center;
     border-radius: 2px;
 }
 
+h1{
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 38px;
+}
+
+.content_max_width {
+    max-width: 1400px;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+  }
+
 .content{
     max-width: 1400px;
+    width: calc(100% - 300px);
 
 }
 
@@ -42,15 +71,14 @@ align-items: center;
     position: relative;
 }
 
-.section_hero{ 
-    position: relative;
+.section_hero h1 { 
+    padding-left: 16px;
 }
-
-.w3-sidebar{
-    justify-content: center;
-    width:25%;
-    right:0;
-    position: relative;
+.section_hero p{
+    color: #FF8000;
+    padding-top: 16px;
+    padding-bottom: 4px;
+    padding-left: 16px;
 }
 
 .category_image{
@@ -63,3 +91,71 @@ h2{
     margin-top: 0;
 }
 
+.basket_content{
+    width: 300px;
+    border: 2px solid #ff8c00;
+    flex-grow: 1;
+    padding: 16px;
+}
+
+.basket{
+    width: 100%;
+    height: calc(100vh - 200px);
+    position: sticky;
+    top: 0;
+    padding-top: 10px;
+    border: 1px solid #FF8000;
+}
+
+.category-nav{
+    display: flex;
+    background: linear-gradient(to bottom, #ffffff, #d5802b);
+    padding: 16px;
+    font-size: 20px;
+    justify-content: space-evenly;
+}
+
+
+.scroll_link {
+    display: inline-block;
+    padding: 8px 14px 6px 14px;
+    color: #FF8000;
+    background-color: white;
+    border: 1px solid #FF8000;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .scroll_link:hover {
+    transform: rotateX(8deg) rotateY(8deg) scale(1.1);
+    box-shadow: 0 10px 15px rgba(255, 128, 0, 0.3);
+    background-color: #FF8000;
+    color: white;
+    cursor: pointer;
+  }
+  
+
+section *:not(img){
+    padding-left: 16px;
+}
+
+.menu-item{
+    border: 1px solid rgb(207, 172, 107);
+    margin-bottom: 8px;
+}
+
+.menu-item strong{
+    padding: 0;
+    color: orangered;
+}
+
+.add-button{
+    display: flex;
+    position: rigth;
+}

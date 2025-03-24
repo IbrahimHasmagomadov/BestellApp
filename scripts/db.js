@@ -26,7 +26,7 @@ let pizzas = [
     }
   ];
   
-  let burgers = [
+let burgers = [
     {
       "name": "Classic Burger",
       "ingredients": "Rindfleisch, Salat, Tomate, Zwiebeln, Ketchup, Mayo",
@@ -49,7 +49,7 @@ let pizzas = [
     }
   ];
   
-  let sides = [
+let sides = [
     {
       "name": "Pommes Frites",
       "ingredients": "Kartoffeln, Salz",
@@ -72,7 +72,7 @@ let pizzas = [
     }
   ];
   
-  let dips = [
+let dips = [
     {
       "name": "Knoblauch Dip",
       "ingredients": "Joghurt, Knoblauch, Kräuter",
