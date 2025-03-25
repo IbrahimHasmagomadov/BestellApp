@@ -129,12 +129,11 @@ h2{
     font-family: Arial, sans-serif;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     transform-style: preserve-3d;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px  #935c25;
   }
   
   .scroll_link:hover {
-    transform: rotateX(8deg) rotateY(8deg) scale(1.1);
-    box-shadow: 0 10px 15px rgba(255, 128, 0, 0.3);
+    transform: rotateX(10deg) rotateY(10deg) scale(1.1);
     background-color: #FF8000;
     color: white;
     cursor: pointer;

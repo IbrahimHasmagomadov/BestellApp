@@ -10,25 +10,25 @@ function init() {
     document.getElementById("pizza_container").innerHTML = `
         <img src="assets/img/pizza.jpg" class="category_image">
         <h2>Pizza</h2>
-        ${getItemsHTML(pizzas, 'pizza')}
+        ${getItemsHTML(pizzas, "pizzas")}
     `;
 
     document.getElementById("burger_container").innerHTML = `
         <img src="assets/img/burger.jpg" class="category_image">
         <h2>Burger</h2>
-        ${getItemsHTML(burgers, 'burger')}
+        ${getItemsHTML(burgers, "burgers")}
     `;
 
     document.getElementById("sides_container").innerHTML = `
         <img src="./assets/img/Beilagen.jpg" class="category_image">
         <h2>Beilagen</h2>
-        ${getItemsHTML(sides, 'sides')}
+        ${getItemsHTML(sides, "sides")}
     `;
 
     document.getElementById("dips_container").innerHTML = `
         <img src="assets/img/dips.jpg" class="category_image">
         <h2>Dips</h2>
-        ${getItemsHTML(dips)}
+        ${getItemsHTML(dips, "dips")}
     `;
     renderBasket();
 }
@@ -51,13 +51,13 @@ function getItemsHTML(items, type) {
 function addToBasket(type, i) {
     let item;
 
-    if (type === pizzas) {
+    if (type == 'pizzas') {
         item = pizzas[i];
-    }else if (type === burgers) {
+    }else if (type == 'burgers') {
         item = burgers[i];
-    }else if (type === sides) {
+    }else if (type == 'sides') {
         item = sides[i];
-    }else if (type === dips) {
+    }else if (type == 'dips') {
         item = dips[i];
     }
 
@@ -70,6 +70,8 @@ function addToBasket(type, i) {
 function renderBasket() {
     const basketContainer = document.querySelector('.basket');
     basketContainer.innerHTML = '<h2>Warenkorb</h2>';
+    let total = 0;
+    let delivery = 4;
 
     if (basket.length === 0) {
         basketContainer.innerHTML += '<p>Dein Warenkorb ist leer.</p>';
@@ -77,8 +79,43 @@ function renderBasket() {
         let item = basket[i];
         basketContainer.innerHTML += `
             <div class="basket_item">
-                <p>${item.name} - ${item.price.toFixed(2)} €</p>
+                <p>${item.name}    ${item.price.toFixed(2)} €</p>
             </div>
         `;
     }
+
+    for (let i = 0; i < basket.length; i++) {
+        total += basket[i].price
+    }
+
+    if (total >=30){
+        delivery = 0;
+    }
+
+    let deliveryText = '';
+    if (delivery == 0){
+        deliveryText = 'kostenlos'
+    }else {
+         deliveryText = delivery.toFixed(2) + '€ <br>(kostenlos ab 30€ Bestellwert)';
+    }
+
+    let totalWithDelivery = total + delivery;
+
+    basketContainer.innerHTML += /*html*/`
+        <div class="basket_total">
+            <p>Zwischensumme: ${total.toFixed(2)}€</p>
+            <p>Lieferkosten: ${deliveryText} </p>
+            <p><strong> Gesamt: ${totalWithDelivery.toFixed(2)}€</strong></p>
+        </div>
+    `
+}
+
+function getCountedItems(){
+    let counted =[];
+
+    for (let i = 0; i < basket.length; i++) {
+        curentItem = basket[i];
+    }
+    return counted;
+
 }
