@@ -68,18 +68,28 @@ function addToBasket(type, i) {
 
 
 function renderBasket() {
+    
     const basketContainer = document.querySelector('.basket');
     basketContainer.innerHTML = '<h2>Warenkorb</h2>';
+    let countedItems = getCountedItems();
     let total = 0;
     let delivery = 4;
 
     if (basket.length === 0) {
         basketContainer.innerHTML += '<p>Dein Warenkorb ist leer.</p>';
-    }for (let i = 0; i < basket.length; i++) {
-        let item = basket[i];
+        
+    }for (let i = 0; i < countedItems.length; i++) {
+        let item = countedItems[i];
+        let itemTotal = item.price * item.count;
+
         basketContainer.innerHTML += `
             <div class="basket_item">
-                <p>${item.name}    ${item.price.toFixed(2)} €</p>
+                <p>
+                    <button onclick="decreaseItem('${item.name}')">−</button>
+                    ${item.count} 
+                    <button onclick="increaseItem('${item.name}')">+</button>
+                    ${item.name}  -  ${itemTotal.toFixed(2)} €
+                </p>
             </div>
         `;
     }
@@ -110,12 +120,38 @@ function renderBasket() {
     `
 }
 
-function getCountedItems(){
-    let counted =[];
+function getCountedItems() {
+    let counted = [];
 
     for (let i = 0; i < basket.length; i++) {
-        curentItem = basket[i];
-    }
-    return counted;
+        let currentItem = basket[i];
+        let alreadyInCounted = false;
 
+        for (let j = 0; j < counted.length; j++) {
+            if (counted[j].name === currentItem.name) {
+                counted[j].count++;
+                alreadyInCounted = true;
+                break;
+            }
+        }
+
+        if (!alreadyInCounted) {
+            let newItem = {
+                name: currentItem.name,
+                price: currentItem.price,
+                count: 1
+            };
+            counted.push(newItem);
+        }
+    }
+
+    return counted;
+}
+
+
+function increase(name) {
+    for (let i = 0; i < basket.length; i++) {
+        const element = array[i];
+        
+    }
 }
