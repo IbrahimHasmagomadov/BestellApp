@@ -158,3 +158,8 @@ section *:not(img){
     display: flex;
     position: rigth;
 }
+
+/* .plus_minus{
+    height: 16px;
+    width: auto;
+} */

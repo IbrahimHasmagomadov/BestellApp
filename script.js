@@ -1,4 +1,4 @@
-let basket = [];
+let countedBasket = [];
 
 
 
@@ -61,7 +61,25 @@ function addToBasket(type, i) {
         item = dips[i];
     }
 
-    basket.push(item);
+    let alreadyInBasket = false;
+
+    for (let j = 0; j < countedBasket.length; j++) {
+        if (countedBasket[j].name === item.name) {
+            countedBasket[j].count++;
+            alreadyInBasket = true;
+            break;
+        }
+    }
+
+    if (!alreadyInBasket) {
+        let newItem = {
+            name: item.name,
+            price: item.price,
+            count: 1
+        };
+        countedBasket.push(newItem);
+    }
+
     renderBasket();
 }
 
@@ -71,31 +89,29 @@ function renderBasket() {
     
     const basketContainer = document.querySelector('.basket');
     basketContainer.innerHTML = '<h2>Warenkorb</h2>';
-    let countedItems = getCountedItems();
+
     let total = 0;
     let delivery = 4;
 
-    if (basket.length === 0) {
+    if (countedBasket.length === 0) {
         basketContainer.innerHTML += '<p>Dein Warenkorb ist leer.</p>';
         
-    }for (let i = 0; i < countedItems.length; i++) {
-        let item = countedItems[i];
+    }for (let i = 0; i < countedBasket.length; i++) {
+        let item = countedBasket[i];
         let itemTotal = item.price * item.count;
 
-        basketContainer.innerHTML += `
+        basketContainer.innerHTML += /*html*/`
+            
             <div class="basket_item">
                 <p>
-                    <button onclick="decreaseItem('${item.name}')">−</button>
+                    <button class = "plus_minus" onclick="decreaseItem('${item.name}')">-</button>
                     ${item.count} 
-                    <button onclick="increaseItem('${item.name}')">+</button>
+                    <button class = "plus_minus" onclick="increaseItem('${item.name}')">+</button>
                     ${item.name}  -  ${itemTotal.toFixed(2)} €
                 </p>
             </div>
         `;
-    }
-
-    for (let i = 0; i < basket.length; i++) {
-        total += basket[i].price
+        total += itemTotal;
     }
 
     if (total >=30){
@@ -103,7 +119,7 @@ function renderBasket() {
     }
 
     let deliveryText = '';
-    if (delivery == 0){
+    if (delivery === 0){
         deliveryText = 'kostenlos'
     }else {
          deliveryText = delivery.toFixed(2) + '€ <br>(kostenlos ab 30€ Bestellwert)';
@@ -154,4 +170,29 @@ function increase(name) {
         const element = array[i];
         
     }
+}
+
+function increaseItem(name) {
+    for (let i = 0; i < countedBasket.length; i++) {
+        if (countedBasket[i].name === name) {
+            countedBasket[i].count++;
+            break;
+        }
+    }
+    renderBasket();
+}
+
+function decreaseItem(name) {
+    for (let i = 0; i < countedBasket.length; i++) {
+        if (countedBasket[i].name === name) {
+            countedBasket[i].count--;
+
+            if (countedBasket[i].count === 0) {
+                countedBasket.splice(i, 1);
+            }
+
+            break;
+        }
+    }
+    renderBasket();
 }
