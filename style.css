@@ -96,15 +96,8 @@ h2{
     border: 2px solid #ff8c00;
     flex-grow: 1;
     padding: 16px;
-}
-
-.basket{
-    width: 100%;
-    height: calc(100vh - 200px);
     position: sticky;
     top: 0;
-    padding-top: 10px;
-    border: 1px solid #FF8000;
 }
 
 .category-nav{
@@ -163,3 +156,9 @@ section *:not(img){
     height: 16px;
     width: auto;
 } */
+
+.basket_total {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}

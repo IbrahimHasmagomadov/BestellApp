@@ -108,6 +108,7 @@ function renderBasket() {
                     ${item.count} 
                     <button class = "plus_minus" onclick="increaseItem('${item.name}')">+</button>
                     ${item.name}  -  ${itemTotal.toFixed(2)} €
+                    <button onclick="deleteItem('${item.name}')">🗑️</button>
                 </p>
             </div>
         `;
@@ -176,6 +177,7 @@ function increaseItem(name) {
     for (let i = 0; i < countedBasket.length; i++) {
         if (countedBasket[i].name === name) {
             countedBasket[i].count++;
+
             break;
         }
     }
@@ -190,7 +192,16 @@ function decreaseItem(name) {
             if (countedBasket[i].count === 0) {
                 countedBasket.splice(i, 1);
             }
+            break;
+        }
+    }
+    renderBasket();
+}
 
+function deleteItem(name) {
+    for (let i = 0; i < countedBasket.length; i++) {
+        if (countedBasket[i].name === name) {
+            countedBasket.splice(i, 1);
             break;
         }
     }
