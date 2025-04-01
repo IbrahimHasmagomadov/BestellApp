@@ -1,51 +1,22 @@
 let countedBasket = [];
 
-
-
 function scrollToSection(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
 }
 
 function init() {
-    document.getElementById("pizza_container").innerHTML = `
-        <img src="assets/img/pizza.jpg" class="category_image">
-        <h2>Pizza</h2>
-        ${getItemsHTML(pizzas, "pizzas")}
-    `;
-
-    document.getElementById("burger_container").innerHTML = `
-        <img src="assets/img/burger.jpg" class="category_image">
-        <h2>Burger</h2>
-        ${getItemsHTML(burgers, "burgers")}
-    `;
-
-    document.getElementById("sides_container").innerHTML = `
-        <img src="./assets/img/Beilagen.jpg" class="category_image">
-        <h2>Beilagen</h2>
-        ${getItemsHTML(sides, "sides")}
-    `;
-
-    document.getElementById("dips_container").innerHTML = `
-        <img src="assets/img/dips.jpg" class="category_image">
-        <h2>Dips</h2>
-        ${getItemsHTML(dips, "dips")}
-    `;
+    renderCategory("pizza_container", "assets/img/pizza.jpg", "Pizza", pizzas, "pizzas");
+    renderCategory("burger_container", "assets/img/burger.jpg", "Burger", burgers, "burgers");
+    renderCategory("sides_container", "./assets/img/Beilagen.jpg", "Beilagen", sides, "sides");
+    renderCategory("dips_container", "assets/img/dips.jpg", "Dips", dips, "dips");
     renderBasket();
 }
 
 function getItemsHTML(items, type) {
     let html = "";
     for (let i = 0; i < items.length; i++) {
-        html += /*html*/`
-            <div class="menu-item">
-                <div>
-                    <h3>${items[i].name}</h3>
-                    <p>${items[i].ingredients}</p>
-                    <p><strong>${items[i].price.toFixed(2)} €</strong></p>
-                </div>
-                <button onclick="addToBasket('${type}', ${i})" class="add-button">+</button>
-            </div>
-        `;
+        html += createMenuItemHTML(items[i], type, i);
+
     }
     return html;
 }
@@ -62,7 +33,6 @@ function addToBasket(type, i) {
     }else if (type == 'dips') {
         item = dips[i];
     }
-
     let alreadyInBasket = false;
 
     for (let j = 0; j < countedBasket.length; j++) {
@@ -72,7 +42,6 @@ function addToBasket(type, i) {
             break;
         }
     }
-
     if (!alreadyInBasket) {
         let newItem = {
             name: item.name,
@@ -81,7 +50,6 @@ function addToBasket(type, i) {
         };
         countedBasket.push(newItem);
     }
-
     renderBasket();
 }
 
@@ -103,44 +71,22 @@ function renderBasket() {
         let item = countedBasket[i];
         let itemTotal = item.price * item.count;
 
-        basketContainer.innerHTML += /*html*/`
-            
-            <div class="basket_item">
-                <p>
-                    <button class = "plus_minus" onclick="decreaseItem('${item.name}')">-</button>
-                    ${item.count} 
-                    <button class = "plus_minus" onclick="increaseItem('${item.name}')">+</button>
-                    ${item.name}  -  ${itemTotal.toFixed(2)} €
-                    <button class = "plus_minus" onclick="deleteItem('${item.name}')">🗑️</button>
-                </p>
-            </div>
-        `;
+        basketContainer.innerHTML += basketItemHTML(item, itemTotal);
         total += itemTotal;
     }
 
     if (total >=30){
         delivery = 0;
     }
-
     let deliveryText = '';
     if (delivery === 0){
         deliveryText = '0€'
     }else {
          deliveryText = delivery.toFixed(2) + '€ <br>(kostenlos ab 30€ Bestellwert)';
     }
-
     let totalWithDelivery = total + delivery;
-
-    basketContainer.innerHTML += /*html*/`
-        <div class="basket_total">
-            <p>Zwischensumme: ${total.toFixed(2)}€</p>
-            <p>Lieferkosten: ${deliveryText} </p>
-            <p><strong> Gesamt: ${totalWithDelivery.toFixed(2)}€</strong></p>
-        </div>
-        <div class="basket_order">
-            <button class="order_button" onclick="placeOrder()">Bestellen</button>
-        </div>
-    `;
+    basketContainer.innerHTML += BasketTotalHTML(total, deliveryText, totalWithDelivery);
+    
 }
 
 function getCountedItems() {
@@ -157,7 +103,6 @@ function getCountedItems() {
                 break;
             }
         }
-
         if (!alreadyInCounted) {
             let newItem = {
                 name: currentItem.name,
@@ -170,7 +115,6 @@ function getCountedItems() {
 
     return counted;
 }
-
 
 function increase(name) {
     for (let i = 0; i < basket.length; i++) {

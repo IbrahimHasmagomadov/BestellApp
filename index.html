@@ -6,7 +6,7 @@
     <title>Vay Pizza</title>
     <script src="script.js" defer></script>
     <script src="scripts/db.js" defer></script>
-    <!-- <script src="template.js"></script> -->
+    <script src="scripts/template.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style/assets.css">
     <link rel="stylesheet" href="style/basket.css">
@@ -32,7 +32,10 @@
 
         <main class="content">
             <section class="section_hero">
-                <div class="hero"></div>
+                <div class="hero">
+                    <img src="assets/icon/vay_logo.png" alt="logo">
+                </div>
+                
                 <h1>Vay Pizza</h1>
                 <p>Bewertungen (4,9 von 5 Sternen)</p>
             </section>
@@ -52,13 +55,21 @@
         <button class="basket_toggle_button" onclick="toggleBasket()">Warenkorb</button>
 
         <div class="basket_content">
-            <div>
                 <div class="basket">
                     <h2>Warenkorb</h2>
                 </div>
-            </div>
+                <div class="basket_order_container"></div>
         </div>
     </div>
-
+    <footer class="footer">
+        <div class="footer_content">
+          <p>&copy; 2025 Vay Pizza. Alle Rechte vorbehalten.</p>
+          <nav class="footer_links">
+            <a href="#">Impressum</a>
+            <a href="#">Datenschutz</a>
+            <a href="#">Kontakt</a>
+          </nav>
+        </div>
+      </footer>      
 </body>
 </html>
