@@ -5,10 +5,10 @@ function scrollToSection(id) {
 }
 
 function init() {
-    renderCategory("pizza_container", "assets/img/pizza.jpg", "Pizza", pizzas, "pizzas");
-    renderCategory("burger_container", "assets/img/burger.jpg", "Burger", burgers, "burgers");
-    renderCategory("sides_container", "./assets/img/Beilagen.jpg", "Beilagen", sides, "sides");
-    renderCategory("dips_container", "assets/img/dips.jpg", "Dips", dips, "dips");
+    renderCategory("pizza_container", "./assets/img/pizza.jpg", "Pizza", pizzas, "pizzas");
+    renderCategory("burger_container", "./assets/img/burger.jpg", "Burger", burgers, "burgers");
+    renderCategory("sides_container", "./assets/img/beilagen.jpg", "Beilagen", sides, "sides");
+    renderCategory("dips_container", "./assets/img/dips.jpg", "Dips", dips, "dips");
     renderBasket();
 }
 

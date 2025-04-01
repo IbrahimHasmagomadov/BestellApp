@@ -64,7 +64,7 @@ h1{
 
 .hero {
     position: relative;
-    background-image: url(./assets/img/Hero.jpg);
+    background-image: url('./assets/img/hero.jpg');
     height: 200px;
     background-position: center;
     background-repeat: no-repeat;
@@ -171,6 +171,7 @@ section *:not(img){
     display: flex;
     flex-direction: column;
     height: calc(100vh - 32px);
+    border-radius: 6px;
 }
 
 .basket_order_container {
