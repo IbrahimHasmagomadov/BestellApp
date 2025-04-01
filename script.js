@@ -16,7 +16,6 @@ function getItemsHTML(items, type) {
     let html = "";
     for (let i = 0; i < items.length; i++) {
         html += createMenuItemHTML(items[i], type, i);
-
     }
     return html;
 }
@@ -53,8 +52,6 @@ function addToBasket(type, i) {
     renderBasket();
 }
 
-
-
 function renderBasket() {
     
     const basketContainer = document.querySelector('.basket');
@@ -74,7 +71,6 @@ function renderBasket() {
         basketContainer.innerHTML += basketItemHTML(item, itemTotal);
         total += itemTotal;
     }
-
     if (total >=30){
         delivery = 0;
     }
@@ -86,7 +82,6 @@ function renderBasket() {
     }
     let totalWithDelivery = total + delivery;
     basketContainer.innerHTML += BasketTotalHTML(total, deliveryText, totalWithDelivery);
-    
 }
 
 function getCountedItems() {
@@ -112,7 +107,6 @@ function getCountedItems() {
             counted.push(newItem);
         }
     }
-
     return counted;
 }
 
