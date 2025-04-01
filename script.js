@@ -38,9 +38,11 @@ function getItemsHTML(items, type) {
     for (let i = 0; i < items.length; i++) {
         html += /*html*/`
             <div class="menu-item">
-                <h3>${items[i].name}</h3>
-                <p>${items[i].ingredients}</p>
-                <p><strong>${items[i].price.toFixed(2)} €</strong></p>
+                <div>
+                    <h3>${items[i].name}</h3>
+                    <p>${items[i].ingredients}</p>
+                    <p><strong>${items[i].price.toFixed(2)} €</strong></p>
+                </div>
                 <button onclick="addToBasket('${type}', ${i})" class="add-button">+</button>
             </div>
         `;
@@ -95,6 +97,7 @@ function renderBasket() {
 
     if (countedBasket.length === 0) {
         basketContainer.innerHTML += '<p>Dein Warenkorb ist leer.</p>';
+        return;
         
     }for (let i = 0; i < countedBasket.length; i++) {
         let item = countedBasket[i];
@@ -108,7 +111,7 @@ function renderBasket() {
                     ${item.count} 
                     <button class = "plus_minus" onclick="increaseItem('${item.name}')">+</button>
                     ${item.name}  -  ${itemTotal.toFixed(2)} €
-                    <button onclick="deleteItem('${item.name}')">🗑️</button>
+                    <button class = "plus_minus" onclick="deleteItem('${item.name}')">🗑️</button>
                 </p>
             </div>
         `;
@@ -121,7 +124,7 @@ function renderBasket() {
 
     let deliveryText = '';
     if (delivery === 0){
-        deliveryText = 'kostenlos'
+        deliveryText = '0€'
     }else {
          deliveryText = delivery.toFixed(2) + '€ <br>(kostenlos ab 30€ Bestellwert)';
     }
@@ -134,7 +137,10 @@ function renderBasket() {
             <p>Lieferkosten: ${deliveryText} </p>
             <p><strong> Gesamt: ${totalWithDelivery.toFixed(2)}€</strong></p>
         </div>
-    `
+        <div class="basket_order">
+            <button class="order_button" onclick="placeOrder()">Bestellen</button>
+        </div>
+    `;
 }
 
 function getCountedItems() {
@@ -206,4 +212,20 @@ function deleteItem(name) {
         }
     }
     renderBasket();
+}
+
+function placeOrder() {
+    countedBasket = [];
+    renderBasket();
+
+    const basketContainer = document.querySelector('.basket');
+    const feedback = document.createElement('p');
+    feedback.textContent = "Ihre Bestellung wurde erfolgreich entgegengenommen. Lieferzeit: ca. 45 Minuten. Guten Appetit!";
+    feedback.classList.add('order-feedback');
+    basketContainer.appendChild(feedback);
+}
+
+function toggleBasket() {
+    const basket = document.querySelector('.basket_content');
+    basket.classList.toggle('show_mobile_basket');
 }
